@@ -26,7 +26,9 @@
           <button class="ops" @click="teclas('3')">3</button>
           <button class="ops1" @click="ponto">.</button>
           <button class="ops" @click="teclas('0')">0</button>
+          <button class="ops" @click="teclas('-')">+/-</button>
           <button class="ops1" id="igual" @click="resultado">=</button>
+          
         </div>
       </div>
     </div>
@@ -73,31 +75,30 @@
 
             // Método responsável por realizar a operação da 'divisão'
             dividir() {
-                this.operador = (num1, num2) => num1 / num2;
+                this.operador = (num1, num2) => ((num1 / num2).toFixed(2));
                 this.setarValor();
             },
             // Método responsável por realizar a operação da 'somar'
             somar() {
-                this.operador = (num1, num2) => num1 + num2;
+                this.operador = (num1, num2) => ((num1 + num2).toFixed(2));
                 this.setarValor();
             },
             // Método responsável por realizar a operação da 'multiplicar'
             multiplicar() {
-                this.operador = (num1, num2) => num1 * num2;
+                this.operador = (num1, num2) => ((num1 * num2).toFixed(2));
                 this.setarValor();
             },
             // Método responsável por realizar a operação da 'diminuir'
             diminuir() {
-                this.operador = (num1, num2) => num1 - num2;
+                this.operador = (num1, num2) => ((num1 - num2).tofixed(2));
                 this.setarValor();
             },
             // Método responsável por apresentar o resultado das operações da Calculadora:
             resultado() {
-                this.valorCorrente = `${this.operador(
-        parseFloat(this.numeroAnterior),
-        parseFloat(this.valorCorrente)
-      )}`;
-                this.valorCorrente = this.valorCorrente;
+                this.valorCorrente =
+                    `${this.operador(parseFloat(this.numeroAnterior),
+                        parseFloat(this.valorCorrente))}`;
+
 
             }
         }
@@ -189,7 +190,7 @@
     }
     
     #igual {
-        width: 200px;
+        width: 130px;
     }
     
     h1 {
