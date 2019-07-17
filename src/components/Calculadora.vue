@@ -1,10 +1,10 @@
 <template>
   <div
     id="app"
-    v-on:keyup.c="limpar()"
-    v-on:keyup.a="somar()"
-    v-on:keyup.x="multiplicar()"
-    v-on:keyup.s="diminuir() "
+    v-on:keyup.c ="limpar()"
+    v-on:keyup.+ ="somar()"
+    v-on:keyup.* ="multiplicar()"
+    v-on:keyup.- ="diminuir() "
     v-on:keyup.d="dividir()"
     v-on:keyup.p="porcento()"
     v-on:keyup.i="resultado()"
@@ -57,66 +57,66 @@
         },
         methods: {
             limpar() {
-      this.valorCorrente = "";
-    },
-    sinal() {
-      this.valorCorrente =
-        this.valorCorrente.charAt(0) === "-"
-          ? this.valorCorrente.slice(1)
-          : `-${this.valorCorrente}`;
-    },
-    //metodo responsavel pela operação porcentagem
-    porcento() {
-      this.valorCorrente = `${parseFloat(this.valorCorrente) / 100}`;
-    },
-    //metodo responsavel para inserir numeros
-    teclas(numero) {
-      if (this.operadorClicado) {
-        this.valorCorrente = "";
-        this.operadorClicado = false;
-      }
-      this.valorCorrente = `${this.valorCorrente}${numero}`;
-    },
-    // Método responsável por adicionar 'ponto' no display da Calculadora:
-    ponto() {
-      if (this.valorCorrente.indexOf(".") === -1) {
-        this.teclas(".");
-      }
-    },
-    setarValor() {
-      this.numeroAnterior = this.valorCorrente;
-      this.operadorClicado = true;
-    },
-    // Método responsável por realizar a operação da 'divisão'
-    dividir() {
-      this.operador = (num1, num2) => ((num1 / num2.toFixed(2)));
-      this.setarValor();
-    },
-    // Método responsável por realizar a operação da 'multiplicar'
-    multiplicar() {
-      this.operador = (num1, num2) => ((num1 * num2.toFixed(2)));
-      this.setarValor();
-    },
-    // Método responsável por realizar a operação da 'diminuir'
-    diminuir() {
-      this.operador = (num1, num2) => ((num1 - num2).toFixed(2));
-      this.setarValor();
-    },
-    // Método responsável por realizar a operação da 'somar'
-    somar() {
-      this.operador = (num1, num2) => ((num1 + num2));
-      this.setarValor();
-    },
+                this.valorCorrente = "";
+            },
+            sinal() {
+                this.valorCorrente =
+                    this.valorCorrente.charAt(0) === "-" ?
+                    this.valorCorrente.slice(1) :
+                    `-${this.valorCorrente}`;
+            },
+            //metodo responsavel pela operação porcentagem
+            porcento() {
+                this.valorCorrente = `${parseFloat(this.valorCorrente) / 100}`;
+            },
+            //metodo responsavel para inserir numeros
+            teclas(numero) {
+                if (this.operadorClicado) {
+                    this.valorCorrente = "";
+                    this.operadorClicado = false;
+                }
+                this.valorCorrente = `${this.valorCorrente}${numero}`;
+            },
+            // Método responsável por adicionar 'ponto' no display da Calculadora:
+            ponto() {
+                if (this.valorCorrente.indexOf(".") === -1) {
+                    this.teclas(".");
+                }
+            },
+            setarValor() {
+                this.numeroAnterior = this.valorCorrente;
+                this.operadorClicado = true;
+            },
+            // Método responsável por realizar a operação da 'divisão'
+            dividir() {
+                this.operador = (num1, num2) => (num1 / num2).toFixed(2);
+                this.setarValor();
+            },
+            // Método responsável por realizar a operação da 'multiplicar'
+            multiplicar() {
+                this.operador = (num1, num2) => (num1 * num2).toFixed(2);
+                this.setarValor();
+            },
+            // Método responsável por realizar a operação da 'diminuir'
+            diminuir() {
+                this.operador = (num1, num2) => (num1 - num2).toFixed(2);
+                this.setarValor();
+            },
+            // Método responsável por realizar a operação da 'somar'
+            somar() {
+                this.operador = (num1, num2) => (num1 + num2).toFixed(2);
+                this.setarValor();
+            },
 
-    // Método responsável por apresentar o resultado das operações da Calculadora:
-    resultado() {
-      this.valorCorrente = `${this.operador(
+            // Método responsável por apresentar o resultado das operações da Calculadora:
+            resultado() {
+                this.valorCorrente = `${this.operador(
         parseFloat(this.numeroAnterior),
         parseFloat(this.valorCorrente)
       )}`;
-    }
-  }
-};
+            }
+        }
+    };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
